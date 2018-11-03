@@ -1,0 +1,246 @@
+/* 画面上部の線 */
+.bar-header {
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.bar-header .logo-bar {
+  position: relative;
+  background-color: #909090;
+  height: 4px;
+  width: 100%;
+  z-index: 3;
+}
+
+/* inputタグのサイズ調整 */
+.form-control {
+ height:36px !important;
+}
+
+/* 諸事情：validator関連にて調整　*/
+.form-group {
+ margin-bottom:0px !important;
+}
+.has-error {
+ margin-bottom:10px !important;
+}
+
+/*フロートバナー的なデザイン（フッター）*/
+.float-div {
+  position: fixed;
+  z-index: 1000;
+  left: 0px;
+  bottom: 0px;
+ padding: 10px 0px 10px 0px;
+  width: 100%;
+  display: block;
+  padding-bottom: 2px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.msg-div {
+    position: fixed;
+    top: 50px;
+    height: 75px;
+    font-size: 16px;
+    color: #ffffff;
+    z-index: 1000;
+    width: 100%;
+    display: block;
+
+    /*background: rgba(223, 233, 109, 0.9);*/
+    background-color: #8FBD39;
+    opacity:0.9;
+}
+
+/*システムでのメインボタン*/
+.btn-sys {
+  color: #ffffff;
+  background-color: #909090;
+  border-color: #C0C0C0;
+}
+.btn-sys:hover,
+.btn-sys:focus,
+.btn-sys:active,
+.btn-sys.active,
+.open .dropdown-toggle.btn-sys {
+  color: #ffffff;
+  background-color: #CACACA;
+  border-color: #B4B4B4;
+}
+
+.btn-sys:active,
+.btn-sys.active,
+.open .dropdown-toggle.btn-sys {
+  background-image: none;
+}
+
+.btn-sys.disabled,
+.btn-sys[disabled],
+fieldset[disabled] .btn-sys,
+.btn-sys.disabled:hover,
+.btn-sys[disabled]:hover,
+fieldset[disabled] .btn-sys:hover,
+.btn-sys.disabled:focus,
+.btn-sys[disabled]:focus,
+fieldset[disabled] .btn-sys:focus,
+.btn-sys.disabled:active,
+.btn-sys[disabled]:active,
+fieldset[disabled] .btn-sys:active,
+.btn-sys.disabled.active,
+.btn-sys[disabled].active,
+fieldset[disabled] .btn-sys.active {
+  background-color: #909090;
+  border-color: #C0C0C0;
+}
+
+.heading-large {
+  padding: 5px 10px;
+  font-size: 1.3em;
+  border-bottom: 1px #333 solid;
+  font-weight: bolder;
+  width: 180px;
+}
+
+.heading-small {
+  padding: 5px 10px;
+  font-size: 1.1em;
+  border-bottom: 1px #333 solid;
+  font-weight: bolder;
+  width: 130px;
+}
+.heading-xs {
+  padding: 5px 5px 5px 10px;
+}
+/*チェックボックス表示調整用*/
+.checkbox-middle{
+  width:18px;
+  height:18px;
+}
+
+.checkbox-big{
+  width:24px;
+  height:24px;
+}
+.valign{
+  vertical-align:-5px;
+}
+
+/*input-groupの調整用*/
+.input-group-addon{
+background-color: #F0F0F0 !important;
+color:#282828;
+}
+.bg_default{
+background-color: #EEE !important;
+}
+.table {
+  margin-bottom: 0px;
+}
+
+
+.th-color{
+  background-color:#F0F0F0 !important;
+}
+
+#loading{
+    padding:15px;
+    position: relative;
+    top:50%;
+    left:50%;
+    filter: alpha(opacity=85);
+    -moz-opacity:0.85;
+    opacity:0.85;
+    z-index: 2000;
+}
+
+#loading .loadingMsg{
+    text-align:center;
+    padding-top:30px;
+    width:30px;
+    background-image:url("./../img/gif-load.gif");
+    background-position: center top;
+    background-repeat: no-repeat;
+	-moz-background-size:cover;
+	background-size:cover;
+    font-family: "メイリオ"!important;
+}
+
+/*btn-active*/
+.btn-default.active{
+  color: #FFF !important;
+  background-color: #FF5C5C !important;
+}
+
+.pointer { cursor: pointer;}
+
+#address-area, .msg-div {
+  display: none;
+}
+
+.txt-red{ color:red}
+
+.glyphicon-hover:hover{color: #dd0000;cursor: pointer;}
+
+.line-h50{line-height: 50px;}
+
+.zi1100{z-index: 1100 !important;}
+.scroll-diff{overflow-y: scroll;}
+
+.ul-uses { list-style-type: none; margin: 0; padding: 0;}
+.ul-uses li { margin: 0 5px 3px 5px; padding-left: 5px;padding-top: 2px; font-size: 1.2em; height: 2.5em; line-height: 2.0em}
+.ui-state-highlight {width: 70%; height: 2.5em; line-height: 2.0em;  border:solid 3px #909090 !important; opacity: 0.2; background: #909090 !important;}
+.ui-state-default {width: 70%; display:inline-block;}
+.li-uses{
+    width: 70%;
+    background:#FFBE54;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    -webki-top-left-radius: 15px;
+    -webkit-top-right-radius: 15px;
+    -moz-top-left-radius: 15px;
+    -moz-top-right-radius: 15px;}
+
+
+input.form-control::-webkit-input-placeholder {
+    color: #ccc;
+    font-weight: normal;
+}
+input.form-control:-ms-input-placeholder {
+    color: #ccc;
+    font-weight: normal;
+}
+input.form-control::-moz-placeholder {
+    color: #ccc;
+    font-weight: normal;
+}
+
+.pre-txt {white-space: pre-wrap; }
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label {
+  color: #ff0000 !important;
+}
+
+.pre-explain {
+  font-size: 15px;
+  line-height: 2;
+}
