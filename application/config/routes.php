@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "login";
+$route['default_controller'] = "Login";
 $route['404_override'] = '';
 /*
 $route['property/(:num)'] = "property/detail/$1";

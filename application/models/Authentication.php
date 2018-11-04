@@ -30,7 +30,7 @@ class Authentication extends CI_Model
     }
 
     /**
-     * 認証結果を通知する。
+     * 認証結果を返却する。
      * @return bool
      */
     public function is_authorization_passed()
@@ -39,7 +39,7 @@ class Authentication extends CI_Model
     }
 
     /**
-     * 認証が通ったユーザーのデータを渡す。
+     * 認証が通ったユーザーのデータを返却する。
      * @return Administrator
      */
     public function get_user()
