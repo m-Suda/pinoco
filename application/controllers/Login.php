@@ -3,51 +3,51 @@
 class Login extends CI_Controller
 {
 
-	function __construct()
-	{
-		parent::__construct();
+    function __construct()
+    {
+        parent::__construct();
 
-		$profiler = $this->config->item("profiler");
+        $profiler = $this->config->item("profiler");
 
-		if (!$this->input->is_ajax_request()) {
-			$this->output->enable_profiler($profiler);
-		}
-	}
+        if (!$this->input->is_ajax_request()) {
+            $this->output->enable_profiler($profiler);
+        }
+    }
 	
-	/**
-	 * ログイン画面初期表示
-	 * @date 2016/06/30
-	 */
-	public function index()
-	{
+    /**
+     * ログイン画面初期表示
+     * @date 2016/06/30
+     */
+    public function index()
+    {
 
-		$data['title'] = "ログイン";
-		$data['contents'] = $this->load->view('login', $data, TRUE);
-		$this->load->view('common/v_base', $data);
+        $data['title'] = "ログイン";
+        $data['contents'] = $this->load->view('login', $data, TRUE);
+        $this->load->view('common/v_base', $data);
 
-	}
+    }
 
-	/**
-	 * ログインボタン押下時
-	 */
-	public function authentication()
-	{
+    /**
+     * ログインボタン押下時
+     */
+    public function authentication()
+    {
 
-		// ajaxリクエスト以外は404エラー
-		if (!$this->input->is_ajax_request()) {
-			show_404();
-		}
+        // ajaxリクエスト以外は404エラー
+        if (!$this->input->is_ajax_request()) {
+            show_404();
+        }
 
-		// 入力値チェック
+        // 入力値チェック
         if (!$this->_validation_check()) {
             echo json_encode($this->_get_validation_errors());
             return;
         }
 
-		// 入力値を格納
-		$post = $this->input->post();
+        // 入力値を格納
+        $post = $this->input->post();
 
-		// 認証処理開始
+        // 認証処理開始
         $authentication = new Authentication($post['user_id'], $post['password']);
         if (!$authentication->is_authorization_passed()) {
             echo json_encode(['errors' => ['authentication' => '認証に失敗しました。']]);
@@ -57,9 +57,9 @@ class Login extends CI_Controller
         // Sessionにログインするユーザー情報を格納
         $_SESSION['user'] = $authentication->get_user();
 
-		echo json_encode([]);
+        echo json_encode([]);
 
-	}
+    }
 
     /**
      * バリデーションチェックを行う
