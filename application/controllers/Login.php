@@ -49,7 +49,7 @@ class Login extends CI_Controller
 
         // 認証処理開始
         $authentication = new Authentication($post['user_id'], $post['password']);
-        if (!$authentication->is_authorization_passed()) {
+        if (!$authentication->is_passed()) {
             echo json_encode(['errors' => ['authentication' => '認証に失敗しました。']]);
             return;
         }

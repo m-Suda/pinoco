@@ -33,7 +33,7 @@ class Authentication extends CI_Model
      * 認証結果を返却する。
      * @return bool
      */
-    public function is_authorization_passed()
+    public function is_passed()
     {
         return $this->_authentication_result;
     }
