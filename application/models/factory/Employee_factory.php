@@ -20,16 +20,15 @@ class Employee_factory extends Factory
         // 営業部なら営業部インスタンスを生成
         if ($division->is_sales_department()) {
 
-            $this->user = new Sales_department($user_id);
+            return new Sales_department($user_id);
         }
 
         // システム開発部なら開発部インスタンスを生成
         if ($division->is_system_development_department()) {
 
-            $this->user = new System_development_department($user_id);
+            return new System_development_department($user_id);
         }
 
-        return $this->user;
     }
 
 }
