@@ -11,26 +11,16 @@ require_once __DIR__.'/../../abstract_model/User.php';
 class Administrator extends User
 {
 
-    function __construct($user_id = null)
+    function __construct($user = null)
     {
-        if (is_null($user_id)) {
+        if (is_null($user)) {
             return;
         }
 
-        $admin_user = $this->select($user_id);
-
-        $this->_id = $admin_user['id'];
-        $this->_name = $admin_user['name'];
-    }
-
-    public function get_name()
-    {
-        return $this->_name;
-    }
-
-    public function select($id)
-    {
-        // TODO: Implement select() method.
+        $this->_id = $user['user_id'];
+        $this->_name = $user['user_name'];
+        $this->_auth = $user['user_auth'];
+        $this->_password = $user['password'];
     }
 
     public function insert($param)

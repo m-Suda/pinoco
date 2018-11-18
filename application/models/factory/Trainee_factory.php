@@ -8,19 +8,32 @@
 
 require_once __DIR__.'/Factory.php';
 
-class Trainee_factory extends Factory
+class Trainee_factory implements Factory
 {
 
-    function create($user_auth, $user_id, $company_id)
+    private $_user = null;
+
+    function __construct($user = null)
+    {
+        if (is_null($user)) {
+            return;
+        }
+
+        $this->_user = $user;
+    }
+
+    function create()
     {
 
+        $user = $this->_user;
+
         // ジョブサポートの研修生
-        if ($company_id === Constants::JOB_SUPPORT) {
-            return new Jobsupport_trainee($user_id);
+        if ($user['company_id'] === Constants::JOB_SUPPORT) {
+            return new Jobsupport_trainee($user);
         }
 
         // 外部の研修生
-        return new External_trainee($user_id);
+        return new External_trainee($user);
     }
 
 }

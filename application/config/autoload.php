@@ -110,20 +110,15 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array('Constants'
+                         , 'User_constants'
                          , 'common/string_util'
                          , 'Authentication'
-                         , 'Division'
-                         , 'factory/Employee_factory'
                          , 'factory/Trainee_factory'
                          , 'factory/User_factory'
-                         , 'concrete_model/company/Jobsupport'
                          , 'concrete_model/user/Administrator'
                          , 'concrete_model/user/Consignor'
-                         , 'concrete_model/user/employee/Sales_department'
-                         , 'concrete_model/user/employee/System_development_department'
                          , 'concrete_model/user/trainee/External_trainee'
-                         , 'concrete_model/user/trainee/Jobsupport_trainee'
-                         , '');
+                         , 'concrete_model/user/trainee/Jobsupport_trainee');
 
 
 /* End of file autoload.php */
