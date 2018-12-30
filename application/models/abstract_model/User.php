@@ -12,6 +12,16 @@ abstract class User extends CI_Model
     protected $_company_id = '';
     protected $_email = '';
 
+    function __construct(array $user)
+    {
+        $this->_id = $user['user_id'];
+        $this->_name = $user['user_name'];
+        $this->_auth = $user['user_auth'];
+        $this->_password = $user['password'];
+        $this->_company_id = $user['company_id'];
+        $this->_email = $user['email'];
+    }
+
     public function get_name()
     {
         return $this->_name;

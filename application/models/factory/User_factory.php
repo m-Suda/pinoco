@@ -78,6 +78,7 @@ class User_factory extends CI_Model implements Factory
           , user_auth
           , company_id
           , password
+          , email
         ');
         // from
         $this->db->from('mst_user');
