@@ -5,11 +5,12 @@
  */
 abstract class User extends CI_Model
 {
-    protected $_name = null;
-    protected $_id = null;
-    protected $_auth = null;
-    protected $_password = null;
-    protected $_company_id = null;
+    protected $_name = '';
+    protected $_id = '';
+    protected $_auth = 0;
+    protected $_password = '';
+    protected $_company_id = '';
+    protected $_email = '';
 
     public function get_name()
     {
@@ -36,7 +37,9 @@ abstract class User extends CI_Model
         return $this->_company_id;
     }
 
-    public abstract function insert($param);
-    public abstract function update($id, $param);
-    public abstract function delete($id);
+    public function get_email()
+    {
+        return $this->_email;
+    }
+
 }
