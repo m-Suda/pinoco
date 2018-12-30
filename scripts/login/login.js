@@ -37,6 +37,7 @@ var login_controller = {
         // レスポンスによって遷移先を振り分ける必要がある
         // 暫定管理者権限のユーザー管理ページへ遷移
         // location.href = this.data.base_url + 'users/index';
+        console.log(body.auth);
         alert('ログイン成功！')
     },
     // 入力値チェックや認証に引っかかった時の処理
@@ -64,10 +65,12 @@ var login_controller = {
 
 		// ajax処理
 		var ajax = new Ajax_form();
+		ajax.set_url(this.data.base_url + 'login/authentication');
+		ajax.set_data(form_data);
 		ajax.set_func_when_ajax_success(login_controller.login_success);
 		ajax.set_func_when_ajax_success_error(login_controller.login_failure);
 		ajax.set_func_when_ajax_failure(login_controller.server_error);
-        ajax.execute(this.data.base_url + 'login/authentication', form_data);
+        ajax.execute();
 		
 	},
     // イベントを紐づける

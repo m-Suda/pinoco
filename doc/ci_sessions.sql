@@ -1,9 +1,13 @@
-CREATE TABLE IF NOT EXISTS ci_sessions (
-	session_id varchar(40) DEFAULT '0' NOT NULL,
-	ip_address varchar(16) DEFAULT '0' NOT NULL,
-	user_agent varchar(120) NOT NULL,
-	last_activity integer DEFAULT 0 NOT NULL,
-	user_data text NOT NULL,
-	CONSTRAINT                 ci_sessions_pkey PRIMARY KEY (session_id)
+-- auto-generated definition
+create table ci_sessions
+(
+  session_id    varchar(40) charset latin1 default '0' not null
+    primary key,
+  ip_address    varchar(16) charset latin1 default '0' not null,
+  user_agent    varchar(120) charset latin1            not null,
+  last_activity int default '0'                        not null,
+  user_data     text charset latin1                    not null
 );
-CREATE INDEX last_activity_idx ON ci_sessions ( last_activity );
+
+create index last_activity_idx
+  on ci_sessions (last_activity);

@@ -4,10 +4,28 @@
  */
 var Ajax_form = function() {
 
+    this.url = null;
+    this.data = null;
+
     this.ajax_success_func = null;
     this.ajax_success_error_func = null;
     this.ajax_failure_func = null;
+}
 
+/**
+ * AjaxオブジェクトにURLをセットします。
+ * @param url
+ */
+Ajax_form.prototype.set_url = function(url) {
+    this.url = url;
+}
+
+/**
+ * AjaxオブジェクトにDataをセットします。
+ * @param data
+ */
+Ajax_form.prototype.set_data = function(data) {
+    this.data = data;
 }
 
 /**
@@ -39,7 +57,7 @@ Ajax_form.prototype.set_func_when_ajax_failure = function(func) {
  * @param url
  * @param data
  */
-Ajax_form.prototype.execute = function(url, data) {
+Ajax_form.prototype.execute = function() {
 
     // ajax後のthisはXHLのオブジェクトに変わってしまうためajaxインスタンス自体は退避
     var that = this;
@@ -47,8 +65,8 @@ Ajax_form.prototype.execute = function(url, data) {
     $.ajax({
 
         type: 'POST',
-        url: url,
-        data: data,
+        url: that.url,
+        data: that.data,
         dataType: 'json',
         cache: false,
         processData: false,

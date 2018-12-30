@@ -8,8 +8,20 @@
 
 require_once __DIR__.'/Factory.php';
 
-class User_factory extends Factory
+class User_factory extends CI_Model implements Factory
 {
+
+    private $_user = null;
+
+    function __construct($user_id = null)
+    {
+
+        if (is_null($user_id)) {
+            return;
+        }
+
+        $this->_user = $this->_fetch_user($user_id);
+    }
 
     /**
      * ログインされるユーザーインスタンスを生成する
@@ -23,37 +35,59 @@ class User_factory extends Factory
      *        |Sales_department
      *        |System_development_department
      */
-    public function create($user_auth, $user_id, $company_id)
+    public function create()
     {
 
-        switch ($user_auth) {
+        $user = $this->_user;
 
-            // 管理者権限
-            case Constants::ADMINISTRATOR:
-                $this->user = new Administrator($user_id);
-                break;
-
-            // 法人様権限
-            case Constants::CONSIGNOR:
-                $this->user = new Consignor($user_id);
-                break;
-
-            // job社員権限
-            case Constants::EMPLOYEE:
-                $factory = new Employee_factory();
-                $this->user = $factory->create($user_auth, $user_id, $company_id);
-                break;
-
-            // 研修生権限
-            case Constants::TRAINEE:
-                $factory = new Trainee_factory();
-                $this->user = $factory->create($user_auth, $user_id, $company_id);
-                break;
-
-            default:
-                break;
+        if (is_null($user)) {
+            return null;
         }
 
-        return $this->user;
+        switch ($user['user_auth']) {
+
+            // 管理者権限
+            case User_constants::ADMINISTRATOR:
+                return new Administrator($user);
+
+            // 法人様権限
+            case User_constants::CONSIGNOR:
+                return new Consignor($user);
+
+            // 研修生権限
+            case User_constants::TRAINEE:
+                $factory = new Trainee_factory($user);
+                return $factory->create();
+
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * ユーザーIDからユーザーを1件取得する。
+     * @param $user_id
+     * @return array
+     */
+    private function _fetch_user($user_id)
+    {
+        // select
+        $this->db->select('
+            user_id
+          , user_name
+          , user_auth
+          , company_id
+          , password
+          , email
+        ');
+        // from
+        $this->db->from('mst_user');
+        // where
+        $this->db->where('user_id', $user_id);
+        $this->db->where('is_delete', Constants::IS_NOT_DELETED);
+
+        $result = $this->db->get()->result_array();
+
+        return count($result) !== 0 ? $result[0] : null;
     }
 }

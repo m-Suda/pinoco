@@ -39,24 +39,28 @@ class Login extends CI_Controller
         }
 
         // 入力値チェック
+
         if (!$this->_validation_check()) {
             echo json_encode($this->_get_validation_errors());
             return;
         }
 
-        // 入力値を格納
         $post = $this->input->post();
 
-        // 認証処理開始
-        $authentication = new Authentication($post['user_id'], $post['password']);
-        if (!$authentication->is_authorization_passed()) {
+        // ユーザーを生成
+        $user_factory = new User_factory($post['user_id']);
+        $user = $user_factory->create();
+
+        // 認証処理
+        $authentication = new Authentication($post['user_id'], $post['password'], $user);
+        if (!$authentication->is_passed()) {
             echo json_encode(['errors' => ['authentication' => '認証に失敗しました。']]);
             return;
         }
 
-        // Sessionにログインするユーザー情報を格納
-        $_SESSION['user'] = $authentication->get_user();
+        $_SESSION['user'] = $user;
 
+        // TODO:ログインユーザーの権限を返却
         echo json_encode([]);
 
     }

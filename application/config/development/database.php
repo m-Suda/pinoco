@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'pinoco_user';
+$db['default']['username'] = 'pinoco';
 $db['default']['password'] = 'pinoco';
 $db['default']['database'] = 'pinoco_db';
 $db['default']['dbdriver'] = 'mysql';

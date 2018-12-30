@@ -4,10 +4,29 @@
  */
 var Ajax_Param = function() {
 
+    this.url = null;
+    this.data = null;
+
     this.ajax_success_func = null;
     this.ajax_success_error_func = null;
     this.ajax_failure_func = null;
 
+}
+
+/**
+ * AjaxオブジェクトにURLをセットします。
+ * @param url
+ */
+Ajax_form.prototype.set_url = function(url) {
+    this.url = url;
+}
+
+/**
+ * AjaxオブジェクトにDataをセットします。
+ * @param data
+ */
+Ajax_form.prototype.set_data = function(data) {
+    this.data = data;
 }
 
 /**
@@ -39,15 +58,15 @@ Ajax_Param.prototype.set_func_when_ajax_failure = function(func) {
  * @param url
  * @param data
  */
-Ajax_Param.prototype.execute = function(url, data) {
+Ajax_Param.prototype.execute = function() {
 
     var that = this;
 
     $.ajax({
 
         type: 'POST',
-        url: url,
-        data: data,
+        url: that.url,
+        data: that.data,
         dataType: 'json',
     }).done(function(body) {
 

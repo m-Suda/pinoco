@@ -6,9 +6,7 @@
  * Time: 3:03
  */
 
-abstract class Factory
+interface Factory
 {
-    protected $user;
-
-    abstract function create($user_auth, $user_id, $company_id);
+    public function create();
 }

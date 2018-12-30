@@ -8,69 +8,41 @@
 
 class Authentication extends CI_Model
 {
-    private $_user;
     private $_authentication_result = false;
 
-    function __construct($user_id = null, $password = null)
+    /**
+     * インスタンス生成と同時に認証を行う。
+     * Authentication constructor.
+     * @param null $input_id
+     * @param null $input_password
+     * @param null $user
+     */
+    function __construct($input_id = null, $input_password = null, $user = null)
     {
         parent::__construct();
 
-        if (is_null($user_id) || is_null($password)) {
+        if (is_null($input_id) || is_null($input_password) || is_null($user)) {
             return;
         }
 
-        $user_data = $this->_fetch_user($user_id, $password);
-        if (empty($user_data)) {
+        if ($input_id !== $user->get_id()) {
+            return;
+        }
+
+        if ($input_password !== $user->get_password()) {
             return;
         }
 
         $this->_authentication_result = true;
-        $factory = new User_factory();
-        $this->_user = $factory->create($user_data['user_auth'], $user_data['user_id'], $user_data['company_id']);
     }
 
     /**
      * 認証結果を返却する。
      * @return bool
      */
-    public function is_authorization_passed()
+    public function is_passed()
     {
         return $this->_authentication_result;
-    }
-
-    /**
-     * 認証が通ったユーザーのデータを返却する。
-     * @return Administrator
-     */
-    public function get_user()
-    {
-        return $this->_user;
-    }
-
-    /**
-     * ユーザーIDからユーザーを1件取得する。
-     * @param $user_id
-     * @return array
-     */
-    private function _fetch_user($user_id, $password)
-    {
-        // select
-        $this->db->select('
-            user_id
-          , user_name
-          , user_auth
-          , company_id
-        ');
-        // from
-        $this->db->from('mst_user');
-        // where
-        $this->db->where('user_id', $user_id);
-        $this->db->where('password', $password);
-        $this->db->where('is_delete', Constants::IS_NOT_DELETED);
-
-        $result = $this->db->get()->result_array();
-
-        return count($result) !== 0 ? $result[0] : [];
     }
 
 }
