@@ -20,18 +20,4 @@ class Consignor extends User
         parent::__construct($user);
     }
 
-    public function insert($param)
-    {
-        // TODO: Implement insert() method.
-    }
-
-    public function update($id, $param)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
-    }
 }
