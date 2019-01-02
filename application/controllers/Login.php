@@ -58,10 +58,16 @@ class Login extends CI_Controller
             return;
         }
 
-        $_SESSION['user'] = $user;
+        $user_data = [
+            'user_name'  => $user->get_name(),
+            'user_id'    => $user->get_id(),
+            'user_auth'  => $user->get_auth(),
+            'company_id' => $user->get_company_id(),
+            'user_email' => $user->get_email()
+        ];
+        $this->session->set_userdata('user', $user_data);
 
-        // TODO:ログインユーザーの権限を返却
-        echo json_encode([]);
+        echo json_encode(['type' => $user->get_auth()]);
 
     }
 

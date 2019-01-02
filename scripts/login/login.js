@@ -1,7 +1,11 @@
 var login_controller = {
     // 画面のデータ
 	data: {
-		base_url: null
+		base_url: null,
+        ADMINISTRATOR: '1',
+        CONSIGNOR: '2',
+        EMPLOYEE: '3',
+        TRAINEE: '4'
 	},
     // 画面のUIエレメント
 	ui_elements: {
@@ -34,11 +38,28 @@ var login_controller = {
     // ログイン成功処理
     login_success: function(body) {
 
-        // レスポンスによって遷移先を振り分ける必要がある
-        // 暫定管理者権限のユーザー管理ページへ遷移
-        // location.href = this.data.base_url + 'users/index';
-        console.log(body.auth);
-        alert('ログイン成功！')
+	    switch (body.type) {
+	        case login_controller.data.ADMINISTRATOR:
+                location.href = login_controller.data.base_url + 'users/index';
+                // alert('管理者だよ！');
+                break;
+
+            case this.login_controller.CONSIGNOR:
+                // location.href = login_controller.data.base_url + 'users/index';
+                break;
+
+            case this.login_controller.EMPLOYEE:
+                // location.href = login_controller.data.base_url + 'users/index';
+                break;
+
+            case this.login_controller.TRAINEE:
+                // location.href = login_controller.data.base_url + 'users/index';
+                break;
+
+            default:
+                alert('ユーザー種別の取得に失敗しました。');
+        }
+
     },
     // 入力値チェックや認証に引っかかった時の処理
     login_failure: function(body) {
