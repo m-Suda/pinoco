@@ -15,7 +15,6 @@
 
             <div class="row">
                 <div class="center-block login-form-area login-component ">
-                    <label>ユーザーID</label>
                     <input type="text" class="form-control" name="user_id" placeholder="ユーザーID">
                     <span class="error-message-area" id="user_id-error-area"></span>
                 </div>
@@ -23,7 +22,6 @@
 
             <div class="row">
                 <div class="center-block login-form-area login-component ">
-                    <label>パスワード</label>
                     <input type="password" class="form-control" name="password" placeholder="パスワード">
                     <span class="error-message-area" id="password-error-area"></span>
                 </div>
