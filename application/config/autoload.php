@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('session', 'form_validation');
+$autoload['libraries'] = array('session', 'form_validation', 'database');
 
 
 /*
@@ -111,15 +111,7 @@ $autoload['language'] = array();
 
 $autoload['model'] = array('Constants'
                          , 'User_constants'
-                         , 'common/string_util'
-                         , 'Authentication'
-                         , 'Attendance'
-                         , 'factory/Trainee_factory'
-                         , 'factory/User_factory'
-                         , 'concrete_model/user/Administrator'
-                         , 'concrete_model/user/Consignor'
-                         , 'concrete_model/user/trainee/External_trainee'
-                         , 'concrete_model/user/trainee/Jobsupport_trainee');
+                         , 'common/string_util');
 
 
 /* End of file autoload.php */
