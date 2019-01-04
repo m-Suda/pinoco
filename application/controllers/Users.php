@@ -6,6 +6,7 @@ class Users extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model('services/user_service', 'User');
     }
 
     /**
@@ -14,15 +15,7 @@ class Users extends CI_Controller
     public function index()
     {
 
-        $data['users'] = [
-            [
-                'user_id' => 'hoge',
-                'user_type_name' => '管理者',
-                'user_name' => '管理者ほげほげさん',
-                'company_name' => 'JobSupport',
-                'mail_address' => 'hogehoge@gmail.com'
-            ]
-        ];
+        $data['users'] = $this->User->fetch_user_all();
 
         $data['title'] = "ユーザー一覧";
         $data['menu'] = $this->load->view('common/v_menu', $data, TRUE);
