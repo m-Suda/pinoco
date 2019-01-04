@@ -12,13 +12,14 @@ class Auth_service extends CI_Model
     function __construct()
     {
         parent::__construct();
-        $this->load->model('infrastructure/database/mysql/mst_user', 'MST_USER');
+        $database = Database_constants::DATABASE;
+        $this->load->model("infrastructure/database/${database}/mst_user");
     }
 
     public function authentication($user_id, $password)
     {
 
-        $user = $this->MST_USER->select_once($user_id);
+        $user = $this->mst_user->select_once($user_id);
         if (!$user || $user['password'] !== $password) {
             return 0;
         }

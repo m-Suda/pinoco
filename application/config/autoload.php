@@ -109,8 +109,9 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('Constants'
-                         , 'User_constants'
+$autoload['model'] = array('constants/Constants'
+                         , 'constants/User_constants'
+                         , 'constants/Database_constants'
                          , 'common/string_util');
 
 

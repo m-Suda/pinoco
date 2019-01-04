@@ -12,7 +12,8 @@ class Attendance_service extends CI_Model
     function __construct()
     {
         parent::__construct();
-        $this->load->model('infrastructure/database/mysql/trn_attendance', 'TRN_ATTENDANCE');
+        $database = Database_constants::DATABASE;
+        $this->load->model("infrastructure/database/${database}/trn_attendance");
     }
 
 

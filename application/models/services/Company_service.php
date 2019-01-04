@@ -12,7 +12,8 @@ class Company_service extends CI_Model
     function __construct()
     {
         parent::__construct();
-        $this->load->model('infrastructure/database/mysql/mst_company', 'MST_COMPANY');
+        $database = Database_constants::DATABASE;
+        $this->load->model("infrastructure/database/${database}/mst_company");
     }
 
 }
