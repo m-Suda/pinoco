@@ -11,7 +11,7 @@
 				<table class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
 					<thead class="th-color">
 						<tr>
-							<th class="w80"	>ID</th>
+							<th class="w110">ID</th>
 							<th class="w110">ユーザー種別</th>
 							<th class=""	>ユーザー名</th>
 							<th class=""	>法人名</th>
@@ -27,7 +27,7 @@
 								<?= $user['user_id']; ?>
 							</td>
 							<td class="vcenter">
-								<?= $user['user_type_name']; ?>
+								<?= $user['user_auth_name']; ?>
 							</td>
 							<td class="vcenter">
 								<?= $user['user_name']; ?>
@@ -36,7 +36,7 @@
 								<?= $user['company_name']; ?>
 							</td>
 							<td class="vcenter">
-								<?= $user['mail_address']; ?>
+								<?= $user['email']; ?>
 							</td>
 							<td class="vcenter" align="center">
 								<span class="edit-btn" data-id="<?= $user['user_id'] ?>"><i class="far fa-edit fa-lg"></i></span>

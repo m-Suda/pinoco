@@ -7,6 +7,8 @@ class Login extends CI_Controller
     {
         parent::__construct();
 
+        $this->load->model('services/auth_service', 'Auth');
+
         $profiler = $this->config->item("profiler");
 
         if (!$this->input->is_ajax_request()) {
@@ -39,7 +41,6 @@ class Login extends CI_Controller
         }
 
         // 入力値チェック
-
         if (!$this->_validation_check()) {
             echo json_encode($this->_get_validation_errors());
             return;
@@ -47,27 +48,14 @@ class Login extends CI_Controller
 
         $post = $this->input->post();
 
-        // ユーザーを生成
-        $user_factory = new User_factory($post['user_id']);
-        $user = $user_factory->create();
+        $user_auth = $this->Auth->authentication($post['user_id'], $post['password']);
 
-        // 認証処理
-        $authentication = new Authentication($post['user_id'], $post['password'], $user);
-        if (!$authentication->is_passed()) {
+        if (!$user_auth) {
             echo json_encode(['errors' => ['authentication' => '認証に失敗しました。']]);
             return;
         }
 
-        $user_data = [
-            'user_name'  => $user->get_name(),
-            'user_id'    => $user->get_id(),
-            'user_auth'  => $user->get_auth(),
-            'company_id' => $user->get_company_id(),
-            'user_email' => $user->get_email()
-        ];
-        $this->session->set_userdata('user', $user_data);
-
-        echo json_encode(['type' => $user->get_auth()]);
+        echo json_encode(['type' => $user_auth]);
 
     }
 
