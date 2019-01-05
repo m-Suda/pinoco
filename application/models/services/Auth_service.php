@@ -21,12 +21,12 @@ class Auth_service extends CI_Model
 
         $user = $this->mst_user->select_once($user_id);
         if (!$user || $user['password'] !== $password) {
-            return 0;
+            return false;
         }
 
         $this->set_session($user);
 
-        return $user['user_auth'];
+        return true;
     }
 
     private function set_session($user)
