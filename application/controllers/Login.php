@@ -55,7 +55,7 @@ class Login extends CI_Controller
             return;
         }
 
-        echo json_encode(['type' => $user_auth]);
+        echo json_encode(['type' => $this->session->userdata('user')['user_auth']]);
 
     }
 
